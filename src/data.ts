@@ -1,0 +1,35 @@
+export interface Category { name: string; detail: string; image: string }
+export interface Product { id: string; name: string; brand: string; sku: string; price: number; gst: number; image: string; category: string; description: string; specs: Record<string,string>; stock: number; availability: 'In stock'|'Low stock'|'Out of stock'; featured?: boolean; createdAt: string }
+
+const photo = (id: string, width = 700) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`
+export const categories: Category[] = [
+  { name: 'Bearings', detail: 'Precision motion components', image: photo('photo-1581092160562-40aa08e78837') },
+  { name: 'Electric Motors', detail: 'Power for every application', image: photo('photo-1581092334651-ddf26d9a09d0') },
+  { name: 'Pumps', detail: 'Reliable fluid movement', image: photo('photo-1581092921461-eab62e97a780') },
+  { name: 'Industrial Valves', detail: 'Control flow with confidence', image: photo('photo-1581092580497-e0d23cbdf1dc') },
+  { name: 'Gears & Transmissions', detail: 'Built for precise transfer', image: photo('photo-1581092160607-ee22621dd758') },
+  { name: 'Sensors & Automation', detail: 'Smarter process control', image: photo('photo-1581092795360-fd1ca04f0952') },
+  { name: 'Electrical Components', detail: 'Dependable system essentials', image: photo('photo-1581092162384-8987c1d64718') },
+  { name: 'Fasteners & Fittings', detail: 'The details that hold it all', image: photo('photo-1581092160607-ee22621dd758') },
+]
+const make = (id:string,name:string,brand:string,sku:string,price:number,gst:number,category:string,image:string,description:string,specs:Record<string,string>,stock:number,featured=false):Product => ({id,name,brand,sku,price,gst,category,image,description,specs,stock,availability:stock===0?'Out of stock':stock<8?'Low stock':'In stock',featured,createdAt:`2026-10-${String(15-(Number(id.slice(-1))%12)).padStart(2,'0')}`})
+export const products: Product[] = [
+  make('brg-6205','Deep Groove Ball Bearing','SKF · Explorer Series','AE-BRG-6205-2RS',485,18,'Bearings',photo('photo-1581092160562-40aa08e78837'),'Versatile sealed bearing for general industrial and motor applications.',{'Bore': '25 mm','Outside diameter':'52 mm','Seal type':'2RS sealed'},48,true),
+  make('brg-6308','Deep Groove Ball Bearing 6308','NBC · 63 Series','AE-BRG-6308-ZZ',820,18,'Bearings',photo('photo-1581092160562-40aa08e78837'),'Double-shielded radial bearing for dependable rotating assemblies.',{'Bore':'40 mm','Outside diameter':'90 mm','Seal type':'ZZ shielded'},32),
+  make('brg-22210','Spherical Roller Bearing','Timken · Industrial','AE-BRG-22210-E',3850,18,'Bearings',photo('photo-1581092160562-40aa08e78837'),'Self-aligning roller bearing for demanding radial loads.',{'Bore':'50 mm','Cage':'Steel','Type':'Spherical roller'},11),
+  make('mtr-90','Three Phase Induction Motor','ABB · Industrial','AE-MTR-M2BAX-90',12800,18,'Electric Motors',photo('photo-1581092334651-ddf26d9a09d0'),'General-purpose three-phase motor for industrial machinery.',{'Power':'2.2 kW','Speed':'1440 rpm','Frame':'90L'},14,true),
+  make('mtr-71','IE3 Efficiency Electric Motor','Crompton · IE3','AE-MTR-IE3-71',9600,18,'Electric Motors',photo('photo-1581092334651-ddf26d9a09d0'),'Compact high-efficiency motor for continuous-duty equipment.',{'Power':'1.1 kW','Voltage':'415 V','Frame':'71'},6),
+  make('mtr-112','Foot Mounted Motor 4 kW','Siemens · SIMOTICS','AE-MTR-SD-112M',22400,18,'Electric Motors',photo('photo-1581092334651-ddf26d9a09d0'),'Robust foot-mounted motor for pumps, fans and conveyors.',{'Power':'4 kW','Poles':'4','Mounting':'B3 foot'},9),
+  make('pmp-kds','Centrifugal Water Pump','Kirloskar · KDS Series','AE-PMP-KDS-225',7450,18,'Pumps',photo('photo-1581092921461-eab62e97a780'),'Single-stage centrifugal pump for water circulation and transfer.',{'Discharge':'25–50 mm','Head':'6–32 m','Material':'Cast iron'},22,true),
+  make('pmp-ss','Stainless Steel Process Pump','CRI · SS Series','AE-PMP-SS-40',16400,18,'Pumps',photo('photo-1581092921461-eab62e97a780'),'Corrosion-resistant pump suited to general process applications.',{'Wetted parts':'SS 304','Flow':'Up to 12 m³/h','Connection':'40 mm'},5),
+  make('pmp-dos','Metering Dosing Pump','ProMinent · Concept Series','AE-PMP-DP-12',11900,18,'Pumps',photo('photo-1581092921461-eab62e97a780'),'Adjustable metering pump for controlled fluid dosing.',{'Flow rate':'0–12 L/h','Pressure':'Up to 5 bar','Control':'Manual'},13),
+  make('vlv-bv','Stainless Steel Ball Valve','L&T · Industrial','AE-VLV-BV-25SS',2160,18,'Industrial Valves',photo('photo-1581092580497-e0d23cbdf1dc'),'Quarter-turn valve for isolation in compatible process lines.',{'Nominal size':'25 mm','Body':'SS 304','End connection':'BSP threaded'},26,true),
+  make('vlv-gate','Cast Iron Gate Valve','Audco · Class 150','AE-VLV-GV-50',3380,18,'Industrial Valves',photo('photo-1581092580497-e0d23cbdf1dc'),'Rising-stem gate valve for on/off service in water systems.',{'Nominal size':'50 mm','Body':'Cast iron','Pressure class':'PN 16'},12),
+  make('vlv-bfly','Wafer Butterfly Valve','Leader · Wafer Type','AE-VLV-BFV-80',5280,18,'Industrial Valves',photo('photo-1581092580497-e0d23cbdf1dc'),'Compact wafer valve for flow isolation in industrial pipelines.',{'Nominal size':'80 mm','Disc':'SS 304','Seat':'EPDM'},0),
+  make('gear-c112','Helical Gearbox Unit','Bonfiglioli · C Series','AE-GRB-C112-20',18900,18,'Gears & Transmissions',photo('photo-1581092160607-ee22621dd758'),'Right-angle helical gearbox for machinery drive applications.',{'Ratio':'20:1','Mounting':'Foot / flange','Housing':'Aluminium alloy'},7,true),
+  make('gear-crown','Worm Gear Reducer','Elecon · WG Series','AE-GRB-WG-50',14200,18,'Gears & Transmissions',photo('photo-1581092160607-ee22621dd758'),'Compact worm reducer for low-speed, high-torque drives.',{'Ratio':'50:1','Input':'1.5 kW','Mounting':'Universal'},10),
+  make('sns-prox','Proximity Sensor M12','Omron · E2E Series','AE-SNS-E2E-X5',1375,18,'Sensors & Automation',photo('photo-1581092795360-fd1ca04f0952'),'Inductive proximity sensor for non-contact metal detection.',{'Sensing distance':'5 mm','Output':'NPN NO','Protection':'IP67'},31,true),
+  make('sns-photo','Photoelectric Sensor','Autonics · BR Series','AE-SNS-BR-10',2280,18,'Sensors & Automation',photo('photo-1581092795360-fd1ca04f0952'),'Compact through-beam sensor for machine automation.',{'Sensing range':'10 m','Supply':'12–24 VDC','Output':'NPN / PNP'},16),
+  make('elec-mcb','Three Pole MCB 32A','Schneider · Acti9','AE-ELC-MCB-32',980,18,'Electrical Components',photo('photo-1581092162384-8987c1d64718'),'Three-pole miniature circuit breaker for panel protection.',{'Rated current':'32 A','Poles':'3P','Breaking capacity':'10 kA'},44),
+  make('fast-hex','Hex Bolt & Nut Set M12','TVS · Fasteners','AE-FST-HB-M12',24,18,'Fasteners & Fittings',photo('photo-1581092160607-ee22621dd758'),'Metric hex bolt and nut set for general assembly use.',{'Thread':'M12 × 50 mm','Material':'Grade 8.8 steel','Finish':'Zinc plated'},320),
+]
