@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
-import { ArrowDownRight, ArrowRight, ArrowUpRight, BadgeCheck, Box, Check, CircleHelp, Cog, Headphones, Heart, Menu, PackageCheck, Search, ShieldCheck, ShoppingCart, SlidersHorizontal, UserRound, X } from 'lucide-react'
+import { ArrowDownRight, ArrowRight, ArrowUpRight, BadgeCheck, Box, Check, CircleHelp, Headphones, Heart, Menu, PackageCheck, Search, ShieldCheck, ShoppingCart, SlidersHorizontal, UserRound, X } from 'lucide-react'
 import { categories, type Product } from './data'
 import { AccountPage, CartPage, CatalogPage, CheckoutPage, OrderPage, ProductPage, WishlistPage, CART_KEY, WISH_KEY, cartCount, productList, readStore, saveCart, writeStore, type CartLine } from './commerce'
 import { AdminPanel, CustomerDashboard, InvoicePage, QuotePage, SupportChat } from './pass3'
@@ -9,7 +9,7 @@ import { appPathname, appUrl, prefixInternalLinks } from './routing'
 const fade = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: .55 } } }
 const inr = (amount: number) => `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 })}`
 
-function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><span className="brand-mark"><Cog size={22} strokeWidth={2.1}/><i/></span><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
+function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><img className="brand-mark" src="/aaron-enterprises-logo.png" alt=""/><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
 function Header({ cart }: { cart: number }) {
   const [open, setOpen] = useState(false)
   const links = [['Home','/#home'],['Products','/products'],['Categories','/#categories'],['About Us','/#about'],['Contact','/#contact']]
