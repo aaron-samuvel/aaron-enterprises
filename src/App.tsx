@@ -1,155 +1,32 @@
-import { useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Cog, Download, Factory, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Wrench, X } from 'lucide-react'
-import siteData from './rudra-data.json'
+import { useEffect, useState, type FormEvent } from 'react'
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
+import { ArrowDownRight, ArrowRight, ArrowUpRight, BadgeCheck, Box, Check, CircleHelp, Cog, Headphones, Heart, Menu, PackageCheck, Search, ShieldCheck, ShoppingCart, SlidersHorizontal, UserRound, X } from 'lucide-react'
+import { categories, type Product } from './data'
+import { AccountPage, CartPage, CatalogPage, CheckoutPage, OrderPage, ProductPage, WishlistPage, CART_KEY, WISH_KEY, cartCount, productList, readStore, saveCart, writeStore, type CartLine } from './commerce'
+import { AdminPanel, CustomerDashboard, InvoicePage, QuotePage, SupportChat } from './pass3'
+import { appPathname, appUrl, prefixInternalLinks } from './routing'
 
-type Specification = Record<string, string>
-type Accessory = { 'No.': string; 'Part Number': string; 'Part Name': string }
-type Product = {
-  name: string
-  models: string[]
-  specifications?: Specification[]
-  optional_accessories?: Accessory[]
-  optional_accessories_list_on_page?: string[]
-  standard_equipment_on_page?: string[]
-}
+const fade = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: .55 } } }
+const inr = (amount: number) => `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 })}`
 
-const { company, products, contacts, associates } = siteData as unknown as {
-  company: { name: string; vision: string; mission: string; quality_policy: string; range_statement: string; homepage_body: string[]; stats_claims: { claim: string }[] }
-  products: Product[]
-  contacts: {
-    website_address: { as_printed_on_contact_page: string }
-    email: string
-    phones_on_contact_page: string[]
-    whatsapp: { number: string }
-    map: { embed_url: string; latitude: number; longitude: number }
-  }
-  associates: { region: string; name: string; phone: string }[]
-}
-
-const asset = (file: string) => `${import.meta.env.BASE_URL}rudra/${file}`
-const machineImages = [
-  asset('turret-capstan.png'),
-  asset('auto-turret-capstan.jpg'),
-  asset('single-spindle.png'),
-  asset('spares-accessories.png'),
-]
-const productAnchors = ['turret', 'auto-turret', 'single-spindle', 'spares']
-const productDescriptions = [
-  'Dependable conventional turning, built around TC25 and TC32 capacity.',
-  'Servo driven automatic operation with AC25 and AC32 configurations.',
-  'Single spindle automats for repeatable production across three model sizes.',
-  'Machine spares and accessories to support your equipment and processes.',
-]
-const addressLabel = contacts.website_address.as_printed_on_contact_page
-const aaronAddress = 'G-5, Panchal Estate, Goddev Road, Bhayander East, Thane, Maharashtra – 401105'
-const r = (number: string) => number.replace(/\D/g, '')
-const tel = (number: string) => `tel:+91${r(number).replace(/^0+/, '').replace(/^91/, '')}`
-
-function Brand() {
-  return <a className="brand" href="#top" aria-label="Rudra Automation home"><img src={asset('rudra-logo.png')} alt="Rudra Automation" /></a>
-}
-
-function Header() {
+function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><img className="brand-mark" src={appUrl('/aaron-enterprises-logo.png')} alt=""/><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
+function Header({ cart }: { cart: number }) {
   const [open, setOpen] = useState(false)
-  const links = [['Machines', '#machines'], ['About', '#about'], ['Associates', '#associates'], ['Contact', '#contact']]
-  return <header className="site-header">
-    <div className="header-inner"><Brand />
-      <button className="mobile-menu" aria-label={open ? 'Close navigation' : 'Open navigation'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
-      <nav className={open ? 'nav-open' : ''} aria-label="Main navigation">{links.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}<a className="nav-brochure" href={asset('brochure.pdf')} target="_blank" rel="noreferrer">Brochure <ArrowUpRight size={15} /></a></nav>
-    </div>
-  </header>
+  const links = [['Home','/#home'],['Products','/products'],['Categories','/#categories'],['About Us','/#about'],['Contact','/#contact']]
+  return <header className="header"><div className="nav-wrap"><Brand/><nav className="desktop-nav" aria-label="Main navigation">{links.map(([label,href])=><a href={href} key={label}>{label}</a>)}</nav><div className="nav-tools"><button className="icon-button nav-search" onClick={()=>{if(appPathname()==='/products')document.querySelector<HTMLInputElement>('.catalog-search input')?.focus();else location.href=appUrl('/products')}} aria-label="Search products"><Search size={18}/></button><a className="icon-button wishlist-nav" href="/wishlist" aria-label="Wishlist"><Heart size={18}/></a><a className="icon-button account" href="/account" aria-label="Demo account"><UserRound size={18}/></a><a className="cart-button" href="/cart" aria-label={`Cart, ${cart} items`}><ShoppingCart size={18}/><span>Cart</span><b>{cart}</b></a><button className="mobile-toggle" onClick={()=>setOpen(!open)} aria-label={open?'Close menu':'Open menu'}>{open?<X size={21}/>:<Menu size={21}/>}</button></div></div><AnimatePresence>{open&&<motion.nav className="mobile-nav" initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}}>{links.map(([label,href])=><a key={label} href={href} onClick={()=>setOpen(false)}>{label}<ArrowRight size={16}/></a>)}<a href="/wishlist" onClick={()=>setOpen(false)}>Wishlist <Heart size={16}/></a><a href="/cart" onClick={()=>setOpen(false)}>Cart <ShoppingCart size={16}/></a><a href="/account" onClick={()=>setOpen(false)}>Demo account <UserRound size={16}/></a></motion.nav>}</AnimatePresence></header>
 }
-
-function Hero() {
-  return <section className="hero" id="top">
-    <div className="hero-image" style={{ backgroundImage: `url("${asset('workshop.jpg')}")` }} role="img" aria-label="Rudra Automation machine tool" />
-    <div className="hero-shade" />
-    <div className="hero-content wrap">
-      <span className="kicker"><i /> MACHINE TOOLS · COIMBATORE, INDIA</span>
-      <h1>Built for the<br /><em>work that matters.</em></h1>
-      <p>Turret capstan machines, single spindle automats and purpose-built support for precision manufacturing.</p>
-      <div className="hero-actions"><a className="button button-orange" href="#machines">Explore our machines <ArrowRight size={17} /></a><a className="button button-ghost" href="#contact">Talk to our team <ArrowUpRight size={16} /></a></div>
-      <div className="hero-note"><span>01 — 04</span><i /> ENGINEERING FOR INDUSTRY</div>
-    </div>
-    <a className="hero-scroll" href="#intro"><ArrowDown size={17} /><span>SCROLL TO EXPLORE</span></a>
-  </section>
+function SectionTitle({eyebrow,title,copy,light=false}:{eyebrow:string,title:React.ReactNode,copy:string,light?:boolean}) { return <div className={`section-title ${light?'light':''}`}><span className="eyebrow"><i/>{eyebrow}</span><h2>{title}</h2><p>{copy}</p></div> }
+function Hero({query,setQuery,onSearch,onQuote}:{query:string;setQuery:(v:string)=>void;onSearch:()=>void;onQuote:()=>void}) {
+ return <section className="hero" id="home"><div className="hero-grid"><motion.div className="hero-copy" variants={fade} initial="hidden" animate="show"><span className="eyebrow"><i/> AARON ENTERPRISES <b>·</b> INDUSTRIAL SOLUTIONS</span><h1>Precision parts.<br/><span>Reliable</span> performance.</h1><p className="hero-desc">Your trusted destination for industrial machine spare parts. Discover essential components, compare transparent pricing and simplify procurement for your business.</p><form className="search-box" onSubmit={e=>{e.preventDefault();onSearch()}}><Search size={19}/><input id="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search spare parts, product names or part numbers..."/><button aria-label="Search products"><ArrowRight size={19}/></button></form><div className="hero-actions"><a href="/products" className="button dark">Explore products <ArrowUpRight size={17}/></a><button className="button link-button" onClick={onQuote}>Request a quote <ArrowRight size={16}/></button></div><div className="hero-proof"><span className="proof-icon"><ShieldCheck size={17}/></span><p><b>Procurement, with clarity.</b><small>Product details and pricing, all in one place.</small></p></div></motion.div><motion.div className="hero-visual" initial={{opacity:0,scale:.98}} animate={{opacity:1,scale:1}} transition={{duration:.8,delay:.12}}><div className="hero-image"/><div className="hero-image-shade"/><div className="image-label"><span>ENGINEERED FOR INDUSTRY</span><b>Precision in every part.</b><small>01 / 04 <i/> AARON ENTERPRISES</small></div><div className="hero-corner"><ArrowDownRight size={19}/></div></motion.div></div><div className="service-strip"><div><span><Search size={17}/></span><b>Easy product discovery</b></div><div><span><BadgeCheck size={17}/></span><b>Transparent GST pricing</b></div><div><span><PackageCheck size={17}/></span><b>Business-focused procurement</b></div><div className="strip-note">BUILT AROUND YOUR OPERATIONS</div></div></section>
 }
-
-function Intro() {
-  return <section className="intro section-pad" id="intro"><div className="wrap intro-grid">
-    <div><span className="eyebrow">RUDRA AUTOMATION <b> / </b> MACHINE TOOLS</span><h2>Machines shaped<br />around <span>precision.</span></h2></div>
-    <div className="intro-copy"><p>{company.homepage_body[0]}</p><p>We also work with Siemens V90 servo motors and drives, Lubi Electronics products, and retrofit CNC and conventional machines.</p><a className="text-link" href="#about">Get to know Rudra <ArrowUpRight size={17} /></a></div>
-    <div className="intro-stat"><strong>10,000<span>+</span></strong><span>machines supplied</span><small>As stated by Rudra Automation</small></div>
-  </div></section>
-}
-
-function ProductCard({ product, index }: { product: Product; index: number }) {
-  const anchor = productAnchors[index]
-  const models = product.models.length ? product.models.join('  /  ') : 'Machine support and accessories'
-  return <article className={`machine-card machine-card-${index + 1}`} id={anchor}>
-    <a className="machine-photo" href={`#details-${anchor}`} aria-label={`View ${product.name} details`}><img src={machineImages[index]} alt={product.name} loading="lazy"/><span className="machine-index">0{index + 1}</span><span className="photo-arrow"><ArrowUpRight size={20} /></span></a>
-    <div className="machine-copy"><span className="eyebrow">{index === 3 ? 'SUPPORT & COMPONENTS' : 'RUDRA MACHINE SERIES'}</span><h3>{product.name}</h3><p>{productDescriptions[index]}</p><div className="model-line"><span>MODELS</span><b>{models}</b></div><a href={`#details-${anchor}`} className="text-link">Specifications & details <ArrowRight size={16} /></a></div>
-  </article>
-}
-
-function ProductDetails({ product, index }: { product: Product; index: number }) {
-  const anchor = productAnchors[index]
-  const specs = product.specifications ?? []
-  const models = product.models.map(model => model.startsWith('AC') ? model.replace(/^(AC)(\d+)$/, '$1 $2') : model)
-  return <details className="product-details" id={`details-${anchor}`}>
-    <summary><span><small>PRODUCT {String(index + 1).padStart(2, '0')}</small><b>{product.name}</b></span><ChevronDown size={19} /></summary>
-    {specs.length > 0 && <div className="table-scroll"><table><thead><tr><th>Specification</th>{models.map(model => <th key={model}>{model}</th>)}</tr></thead><tbody>{specs.filter(row => {
-      const label = row.MODEL ?? row.Model ?? ''
-      return label && models.some(model => Boolean(row[model]))
-    }).map((row, rowIndex) => {
-      const label = row.MODEL ?? row.Model ?? ''
-      return <tr key={`${label}-${rowIndex}`}><th scope="row">{label}</th>{models.map(model => <td key={model}>{row[model] || '—'}</td>)}</tr>
-    })}</tbody></table></div>}
-    {product.standard_equipment_on_page && <div className="detail-list"><h4>Standard equipment</h4><ul>{product.standard_equipment_on_page.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul></div>}
-    {(product.optional_accessories?.length || product.optional_accessories_list_on_page?.length) ? <div className="detail-list"><h4>Optional accessories</h4><ul>{(product.optional_accessories ?? []).map(item => <li key={item['Part Number'] + item['Part Name']}><Wrench size={15} /><span>{item['Part Name']} {item['Part Number'] && <small>({item['Part Number']})</small>}</span></li>)}{(product.optional_accessories_list_on_page ?? []).map(item => <li key={item}><Wrench size={15} />{item}</li>)}</ul></div> : null}
-    {!specs.length && index === 3 && <p className="detail-note">Contact us with your machine model and requirement. The supplied material does not publish a full spares catalogue.</p>}
-    <a className="button button-navy details-cta" href={`mailto:${contacts.email}?subject=${encodeURIComponent(`Enquiry: ${product.name}`)}`}>Enquire about this range <ArrowUpRight size={16} /></a>
-  </details>
-}
-
-function Machines() {
-  return <section className="machines section-pad" id="machines"><div className="wrap"><div className="section-heading"><div><span className="eyebrow">DESIGNED TO MAKE</span><h2>Our machine range</h2></div><p>Explore the core machine families and their published specifications. Share your application with us for model guidance.</p></div>
-    <div className="machine-grid">{products.map((product, index) => <ProductCard key={product.name} product={product} index={index} />)}</div>
-    <div className="all-details"><span className="eyebrow">TECHNICAL INFORMATION</span>{products.map((product, index) => <ProductDetails key={product.name} product={product} index={index} />)}<p className="spec-note">Specifications are transcribed from Rudra Automation’s published tables. Contact the team to confirm the current configuration for your application.</p></div>
-  </div></section>
-}
-
-function Capabilities() {
-  const items = [
-    { icon: Factory, no: '01', title: 'Machine manufacturing', text: 'Turret capstan, auto turret capstan, single spindle automat and special purpose machines.' },
-    { icon: Cog, no: '02', title: 'Retrofitting', text: 'Retrofitting support for CNC and conventional machines.' },
-    { icon: ShieldCheck, no: '03', title: 'Quality and service', text: 'A continual improvement approach, with attention to cost, delivery and after-sales service.' },
-  ]
-  return <section className="capabilities section-pad" id="about"><div className="wrap"><div className="section-heading light"><div><span className="eyebrow">OUR APPROACH</span><h2>Experience, applied<br />with care.</h2></div><p>Rudra Automation serves precision engineering, automobile component and industrial manufacturing requirements.</p></div><div className="capability-grid">{items.map(({ icon: Icon, no, title, text }) => <article key={no}><span className="cap-icon"><Icon size={22} /></span><small>{no}</small><h3>{title}</h3><p>{text}</p></article>)}</div><div className="values-grid"><div><span>OUR VISION</span><p>{company.vision}</p></div><div><span>OUR MISSION</span><p>To exceed customer expectations and use their needs to guide improvement in our products and processes.</p></div><div><span>OUR QUALITY</span><p>Quality, cost-effective products, continual improvement, on-time delivery and prompt service.</p></div></div></div></section>
-}
-
-function Associates() {
-  return <section className="associates section-pad" id="associates"><div className="wrap"><div className="section-heading"><div><span className="eyebrow">A WIDER REACH</span><h2>Connect with a local associate.</h2></div><p>Regional sales contacts listed by Rudra Automation.</p></div><div className="associate-grid">{associates.map((person, index) => <a className="associate" href={tel(person.phone)} key={`${person.region}-${index}`}><span><MapPin size={16} />{person.region}</span><b>{person.name}</b><small><Phone size={14} />{person.phone}</small></a>)}</div></div></section>
-}
-
-function MapCard({ title, address, src, href, note }: { title: string; address: string; src: string; href: string; note: string }) {
-  return <article className="map-card"><div className="map-frame"><iframe title={`${title} map`} src={src} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><div className="map-copy"><span className="eyebrow"><MapPin size={14} /> {title}</span><p>{address}</p><small>{note}</small><a className="text-link" href={href} target="_blank" rel="noreferrer">Open map <ArrowUpRight size={15} /></a></div></article>
-}
-
-function Contact() {
-  const maps = [
-    { title: 'Rudra Automation · Coimbatore', address: addressLabel, src: contacts.map.embed_url, href: `https://www.google.com/maps?q=${contacts.map.latitude},${contacts.map.longitude}`, note: 'Machine company contact address' },
-    { title: 'Aaron Enterprises · Registered address', address: aaronAddress, src: `https://www.google.com/maps?q=${encodeURIComponent(aaronAddress)}&output=embed`, href: `https://www.google.com/maps?q=${encodeURIComponent(aaronAddress)}`, note: 'Address only, from the separate GST record' },
-  ]
-  return <section className="contact section-pad" id="contact"><div className="wrap"><div className="contact-top"><div><span className="eyebrow">START A CONVERSATION</span><h2>Let’s talk about<br /><em>your next machine.</em></h2></div><a className="button button-orange" href={`https://wa.me/${contacts.whatsapp.number}`} target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp Rudra Automation <ArrowUpRight size={16} /></a></div><div className="contact-grid"><div className="contact-info"><h3>Get in touch</h3><p>Talk to us about machine specifications, retrofits, spares or an application you have in mind.</p><a href={`mailto:${contacts.email}`}><Mail size={18} /><span><small>EMAIL</small><b>{contacts.email}</b></span></a>{contacts.phones_on_contact_page.map(phone => <a href={tel(phone)} key={phone}><Phone size={18} /><span><small>PHONE</small><b>{phone}</b></span></a>)}<div className="contact-address"><MapPin size={19} /><div><small>RUDRA AUTOMATION ADDRESS</small><p>{addressLabel}</p></div></div><a className="brochure-link" href={asset('brochure.pdf')} target="_blank" rel="noreferrer"><Download size={17} /> View company brochure <ArrowUpRight size={15} /></a></div><div className="maps-grid">{maps.map(map => <MapCard key={map.title} {...map} />)}</div></div></div></section>
-}
-
-function Footer() {
-  return <footer className="footer"><div className="wrap footer-main"><Brand /><p>Machine tools for precision work.<br />Rudra Automation · Coimbatore, India</p><div className="footer-links"><a href="#machines">Machine range</a><a href="#about">About Rudra</a><a href="#associates">Associates</a><a href="#contact">Contact</a></div><div className="footer-legal"><small>Aaron Enterprises registered address (as provided):</small><span>{aaronAddress}</span></div></div><div className="wrap footer-bottom"><span>© {new Date().getFullYear()} Rudra Automation. All rights reserved.</span><a href="#top">Back to top ↑</a></div></footer>
-}
-
-function App() {
-  return <><Header /><main><Hero /><Intro /><Machines /><Capabilities /><Associates /><Contact /></main><Footer /></>
-}
-
-export default App
+function Categories() { return <section className="section categories-section" id="categories"><div className="section-head"><SectionTitle eyebrow="EXPLORE OUR RANGE" title="Explore our categories" copy="Find the components your operations depend on."/><a href="/products" className="text-link">Browse all products <ArrowUpRight size={17}/></a></div><div className="category-grid">{categories.map((c,i)=><motion.a href={`/products?category=${encodeURIComponent(c.name)}`} className="category-card" key={c.name} variants={fade} initial="hidden" whileInView="show" viewport={{once:true,amount:.15}} transition={{delay:i*.035}}><img src={c.image} alt={c.name} loading="lazy"/><div className="category-wash"/><span className="category-index">0{i+1}</span><div className="category-caption"><span><b>{c.name}</b><small>{c.detail}</small></span><span className="round-arrow"><ArrowUpRight size={16}/></span></div></motion.a>)}</div></section> }
+function ProductCard({product,onAdd}:{product:Product;onAdd:(p:Product)=>void}) { const total=product.price*(1+product.gst/100),[wished,setWished]=useState(()=>readStore<string[]>(WISH_KEY,[]).includes(product.id));const toggleWish=()=>{const old=readStore<string[]>(WISH_KEY,[]),next=wished?old.filter(x=>x!==product.id):[...old,product.id];writeStore(WISH_KEY,next);setWished(!wished)}; return <motion.article className="product-card" whileHover={{y:-4}} transition={{duration:.2}}><div className="home-product-photo"><a href={`/product/${product.id}`} className="product-photo"><img src={product.image} alt={product.name} loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/><span className={`in-stock ${product.stock===0?'out':''}`}><i/> {product.availability}</span><span aria-hidden className="photo-arrow"><ArrowUpRight size={16}/></span></a><button className={`wish-toggle home-wish ${wished?'active':''}`} onClick={toggleWish} aria-label={wished?'Remove from wishlist':'Add to wishlist'}><Heart size={16} fill={wished?'currentColor':'none'}/></button></div><div className="product-body"><span className="product-brand">{product.brand}</span><h3><a href={`/product/${product.id}`}>{product.name}</a></h3><span className="sku">PART NO. <b>{product.sku}</b></span><div className="price-break"><span>Price <small>excl. GST</small></span><b>{inr(product.price)}</b></div><div className="price-total"><span>Incl. GST ({product.gst}%)</span><b>{inr(total)}</b></div><div className="card-actions"><a className="details-button" href={`/product/${product.id}`}>View details <ArrowRight size={14}/></a><button className="add-button" onClick={()=>onAdd(product)} disabled={!product.stock} aria-label={`Add ${product.name} to cart`}><ShoppingCart size={16}/> {product.stock?'Add to cart':'Unavailable'}</button></div></div></motion.article> }
+function Products({items,onAdd}:{items:Product[];onAdd:(p:Product)=>void}) { return <section className="section products-section" id="products"><div className="section-head"><SectionTitle eyebrow="SELECTED ESSENTIALS" title="Featured products" copy="Explore essential components for industrial applications."/><span className="sample-label"><SlidersHorizontal size={15}/> REPRESENTATIVE SELECTION</span></div>{items.length>0?<div className="product-grid">{items.map((p,i)=><motion.div key={p.sku} variants={fade} initial="hidden" whileInView="show" viewport={{once:true,amount:.08}} transition={{delay:i*.04}}><ProductCard product={p} onAdd={onAdd}/></motion.div>)}</div>:<div className="empty-results"><Search size={24}/><b>No matching components found</b><span>Try a product name, category or part number.</span></div>}<div className="product-foot"><span>Prices shown are illustrative and subject to confirmation.</span><a href="#contact" className="text-link">Need a specific part? Enquire here <ArrowUpRight size={16}/></a></div></section> }
+function Benefits() { const items=[{icon:Search,title:'Easy product discovery',text:'Find components through organised categories and straightforward product search.'},{icon:BadgeCheck,title:'Transparent pricing',text:'Understand product prices and applicable GST before preparing your order.'},{icon:Box,title:'Organised purchase history',text:'Keep order records and invoices accessible in one place.'},{icon:Headphones,title:'Dedicated customer support',text:'Make it easier to enquire about industrial components and bulk requirements.'}]; return <section className="benefits-section" id="about"><div className="section benefits-inner"><SectionTitle eyebrow="A BETTER WAY TO SOURCE" title={<>Industrial procurement,<br/>made simpler.</>} copy="Practical tools designed around the way businesses source essential components."/><div className="benefit-grid">{items.map((it,i)=><motion.div className="benefit-card" key={it.title} variants={fade} initial="hidden" whileInView="show" viewport={{once:true,amount:.2}} transition={{delay:i*.07}}><span className="benefit-icon">{<it.icon size={19}/>}</span><span className="benefit-number">0{i+1}</span><h3>{it.title}</h3><p>{it.text}</p><span className="benefit-line"/></motion.div>)}</div></div></section> }
+function Workflow() { const steps=[['01','Discover components','Browse categories or search by name and part number.',Search],['02','Compare product details','Review specifications, availability and listed pricing.',SlidersHorizontal],['03','Prepare your order','Add the components you need to a draft cart.',ShoppingCart],['04','Review billing information','Check applicable GST before confirming your enquiry.',Check]] as const; return <section className="section workflow-section"><SectionTitle eyebrow="A CLEARER PROCESS" title="From search to shortlist." copy="A considered workflow for keeping industrial procurement organised."/><div className="workflow-grid">{steps.map(([n,t,d,Icon])=><div className="workflow-step" key={n}><div className="workflow-top"><span className="step-icon"><Icon size={18}/></span><span className="step-no">{n}</span></div><h3>{t}</h3><p>{d}</p></div>)}</div></section> }
+function QuoteBand({onQuote}:{onQuote:()=>void}) { return <section className="quote-band"><div className="quote-pattern"/><div className="quote-content"><span className="eyebrow"><i/> FOR YOUR NEXT PROJECT</span><h2>Need parts<br/><em>in bulk?</em></h2><p>Tell us what your project requires and prepare an enquiry for your industrial procurement needs.</p><button className="button white-button" onClick={onQuote}>Request a quote <ArrowUpRight size={17}/></button></div><div className="quote-side"><div className="quote-orbit"><Cog size={96} strokeWidth={.7}/><i/></div><span>BUILT FOR THE DETAILS<br/>THAT KEEP INDUSTRY MOVING</span><b>AE <i>·</i> INDUSTRIAL SOLUTIONS</b></div></section> }
+function Contact() { const [sent,setSent]=useState(false); function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();const f=new FormData(e.currentTarget),rows=readStore<any[]>('ae_demo_enquiries_v1',[]);writeStore('ae_demo_enquiries_v1',[{reference:`AE-ENQ-${Date.now().toString().slice(-7)}`,name:f.get('name'),email:f.get('email'),mobile:f.get('mobile'),product:f.get('subject'),quantity:'—',description:f.get('message'),notes:f.get('message'),status:'New',createdAt:new Date().toISOString()},...rows]);setSent(true);e.currentTarget.reset()} return <section className="section contact-section" id="contact"><div className="contact-intro"><SectionTitle eyebrow="LET'S TALK COMPONENTS" title="How can we help?" copy="Share what you are looking for. Our contact details can be configured when they are available."/><div className="contact-detail"><span><Headphones size={18}/></span><p><small>PHONE</small><b>[Add business phone number]</b></p></div><div className="contact-detail"><span><CircleHelp size={18}/></span><p><small>EMAIL</small><b>[Add business email address]</b></p></div><div className="map-placeholder"><div className="map-grid"/><span className="map-pin"><Cog size={18}/></span><div><b>Business location</b><small>[Add verified business address]</small></div><span className="map-tag">LOCATION DETAILS TO BE CONFIGURED</span></div></div><form className="contact-form" onSubmit={submit}><div className="form-heading"><b>Send an enquiry</b><span>Fields marked * are required</span></div><label>Your name *<input name="name" required placeholder="Name"/></label><div className="form-row"><label>Email address *<input name="email" required type="email" placeholder="you@company.com"/></label><label>Phone number<input name="mobile" type="tel" placeholder="+91"/></label></div><label>Enquiry subject *<input name="subject" required placeholder="How can we help?"/></label><label>Message *<textarea name="message" required rows={4} placeholder="Tell us about the parts or quantities you need..."/></label><button className="button dark" type="submit">{sent?'Enquiry prepared':'Submit enquiry'} {sent?<Check size={16}/>:<ArrowRight size={16}/>}</button>{sent&&<p className="form-note">Demo confirmation: your enquiry was saved locally. No message was sent.</p>}</form></section> }
+function Footer() { return <footer className="footer"><div className="footer-top"><div className="footer-brand"><Brand/><p>A considered source for the components that keep your operations moving.</p><span><i/> INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</span></div><div className="footer-col"><b>PRODUCTS</b><a href="/products?category=Bearings">Bearings</a><a href="/products?category=Electric%20Motors">Motors &amp; pumps</a><a href="/products?category=Industrial%20Valves">Valves &amp; fittings</a><a href="/products">View all products</a></div><div className="footer-col"><b>COMPANY</b><a href="/#about">About us</a><a href="/dashboard">Customer dashboard</a><a href="/admin">Demo admin</a><a href="/#categories">Categories</a><a href="/#contact">Contact</a><a href="/quote">Request a quote</a></div><div className="footer-col"><b>GET IN TOUCH</b><span>[Business email placeholder]</span><span>[Business phone placeholder]</span><span>[Business address placeholder]</span><a href="/#contact">Send an enquiry <ArrowUpRight size={13}/></a><a href="/account">Demo account <UserRound size={13}/></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Aaron Enterprises. All rights reserved.</span><div><a href="/#contact">Privacy policy</a><a href="/#contact">Terms &amp; conditions</a></div><span>DESIGNED FOR INDUSTRY <ArrowUpRight size={13}/></span></div></footer> }
+function QuoteModal({open,onClose}:{open:boolean;onClose:()=>void}) { const [done,setDone]=useState(false); function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();const v=Array.from(e.currentTarget.querySelectorAll<HTMLInputElement|HTMLTextAreaElement>("input,textarea")).map(x=>x.value),rows=readStore<any[]>("ae_demo_enquiries_v1",[]);writeStore("ae_demo_enquiries_v1",[{reference:`AE-ENQ-${Date.now().toString().slice(-7)}`,name:v[0],mobile:v[1],email:v[2],product:v[3],quantity:v[4]||"—",company:v[5],notes:v[6],description:v[6],status:"New",createdAt:new Date().toISOString()},...rows]);setDone(true)} return <AnimatePresence>{open&&<motion.div className="modal-backdrop" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}}><motion.div className="quote-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" initial={{opacity:0,y:20,scale:.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:12,scale:.98}}><div className="modal-top"><div><span className="eyebrow"><i/> BULK ENQUIRY</span><h2 id="modal-title">Tell us what you need.</h2><p>Prepare an enquiry for the components your project depends on.</p></div><button onClick={onClose} className="icon-button" aria-label="Close enquiry form"><X size={19}/></button></div>{done?<div className="modal-success"><span><Check size={23}/></span><b>Enquiry prepared</b><p>This is a demo confirmation. No enquiry has been sent or received.</p><button className="button dark" onClick={onClose}>Done <ArrowRight size={16}/></button></div>:<form className="quote-form" onSubmit={submit}><div className="form-row"><label>Name *<input required placeholder="Your name"/></label><label>Mobile number *<input required type="tel" placeholder="+91" pattern="[+0-9() -]{8,}"/></label></div><label>Email address *<input required type="email" placeholder="you@company.com"/></label><label>Product or part number<input placeholder="Part name or SKU"/></label><div className="form-row"><label>Required quantity<input type="number" min="1" placeholder="e.g. 25"/></label><label>Company<input placeholder="Company name"/></label></div><label>Message<textarea rows={3} placeholder="Share any specifications or project details..."/></label><button className="button dark" type="submit">Prepare enquiry <ArrowRight size={16}/></button><small className="privacy-note">Demo form only. No details are transmitted.</small></form>}</motion.div></motion.div>}</AnimatePresence> }
+function Toast({message}:{message:string}) { return <AnimatePresence>{message&&<motion.div className="toast" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} exit={{opacity:0,y:10}}><span><Check size={16}/></span>{message}</motion.div>}</AnimatePresence> }
+export default function App() { const [query,setQuery]=useState(''),[cart,setCart]=useState(cartCount()),[toast,setToast]=useState(''),[modal,setModal]=useState(false); useEffect(()=>{const update=()=>setCart(cartCount());window.addEventListener('ae-cart-change',update);const rewrite=()=>prefixInternalLinks();rewrite();const observer=new MutationObserver(rewrite);observer.observe(document.body,{childList:true,subtree:true});return()=>{window.removeEventListener('ae-cart-change',update);observer.disconnect()}},[]); function addToCart(p:Product){const old=readStore<CartLine[]>(CART_KEY,[]),line=old.find(x=>x.productId===p.id),next=line?old.map(x=>x.productId===p.id?{...x,quantity:Math.min(p.stock,x.quantity+1)}:x):[...old,{productId:p.id,quantity:1}];saveCart(next);setCart(cartCount());setToast(`${p.name} added to demo cart`);window.setTimeout(()=>setToast(''),2800)} function doSearch(){location.href=appUrl(`/products?q=${encodeURIComponent(query.trim())}`)} const path=appPathname();const page=path==='/products'?<CatalogPage/>:path==='/cart'?<CartPage/>:path==='/wishlist'?<WishlistPage/>:path==='/checkout'?<CheckoutPage/>:path==='/account'?<AccountPage/>:path==='/dashboard'?<CustomerDashboard/>:path==='/admin'?<AdminPanel/>:path==='/quote'?<QuotePage/>:path.startsWith('/invoice/')?<InvoicePage reference={decodeURIComponent(path.split('/')[2]||'')}/>:path.startsWith('/product/')?<ProductPage id={decodeURIComponent(path.split('/')[2]||'')}/>:path.startsWith('/order/')?<OrderPage reference={decodeURIComponent(path.split('/')[2]||'')}/>:<><main><Hero query={query} setQuery={setQuery} onSearch={doSearch} onQuote={()=>setModal(true)}/><Categories/><Products items={productList().filter(p=>p.featured).slice(0,6)} onAdd={addToCart}/><Benefits/><Workflow/><QuoteBand onQuote={()=>setModal(true)}/><Contact/></main><QuoteModal open={modal} onClose={()=>setModal(false)}/><Toast message={toast}/></>;return <MotionConfig reducedMotion="user"><Header cart={cart}/>{page}<Footer/><SupportChat/></MotionConfig> }

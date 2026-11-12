@@ -1,4 +1,4 @@
-name: Deploy Rudra Automation to GitHub Pages
+name: Deploy Aaron Enterprises to GitHub Pages
 
 on:
   push:
