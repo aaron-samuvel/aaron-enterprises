@@ -1,0 +1,814 @@
+{
+  "source": "https://rudraautomations.com/",
+  "collected_at": "2026-11-12T15:03:45.597906+05:30",
+  "notes": "All values are copied from the live site, public WordPress/Ninja Tables APIs, or the downloadable brochure. Fields that were not found are null or omitted. Two addresses and some differing spec figures exist across sources; both are recorded.",
+  "company": {
+    "name": "Rudra Automation",
+    "legal_or_trading_as_on_site": "Rudra Automation",
+    "document_title": "Rudra Automation - Turret Capstan & Single Spindle Automats",
+    "tagline_or_meta_description": "Rudra Automation is one of the leading machine tool companies, manufacturing Turret Capstan Machines, Auto Turret Capstan Machines, Single Spindle Automats & Special Purpose Machines and Spares.",
+    "homepage_body": [
+      "Rudra Automation is one of the leading machine tool companies, manufacturing Turret Capstan Machines, Auto Turret Capstan Machines, Single Spindle Automats & Special Purpose Machines and Spares.",
+      "Rudra Automation also channel Partner of Siemens V90 Servo Motors & Drives and Channel Partner of Lubi Electronics for Delta / Panasonic / Hust Products We do retrofitting of CNC Machines and Conventional Machines also."
+    ],
+    "vision": "To become a Benchmark in the global market.",
+    "mission": "To provide our external and internal customers with services and experiences that exceeds their expectations. We use customers needs and expectations as the driving forces for business process improvement related to products.",
+    "quality_policy": "Our policy is to manufacture quality, cost effective products through our continual improvement process and satisfy our esteem customers with on time delivery and prompt service.",
+    "range_statement": "Our range of products is in tandem to the industrial requirements for manufacturing precision, engineering, automobile components & industrial sectors. We have supplied more than 10000 machines which has made us leading machine tool manufacturer.",
+    "channel_partnerships_as_written": [
+      "Siemens V90 Servo Motors & Drives",
+      "Lubi Electronics for Delta / Panasonic / Hust Products"
+    ],
+    "other_services_as_written": [
+      "retrofitting of CNC Machines and Conventional Machines",
+      "Special Purpose Machines and Spares"
+    ],
+    "stats_claims": [
+      {
+        "claim": "We have supplied more than 10000 machines which has made us leading machine tool manufacturer.",
+        "source": "https://rudraautomations.com/about/"
+      }
+    ],
+    "founded_year": null,
+    "certifications": [],
+    "business_hours": null,
+    "industries_mentioned": [
+      "precision",
+      "engineering",
+      "automobile components",
+      "industrial sectors"
+    ],
+    "named_clients": [],
+    "footer_copyright": "© 2023 Rudra Automation - All Rights Reserved. | Design by 499 Design",
+    "designer_credit": {
+      "name": "499 Design",
+      "url": "https://499.design/"
+    },
+    "wordpress_home_date_published": "2021-08-01T08:01:31+00:00",
+    "wordpress_home_date_modified": "2023-12-28T05:49:38+00:00"
+  },
+  "contacts": {
+    "website_address": {
+      "as_printed_on_contact_page": "66/2,SF No.70/1A, Athipalayam Road, Chinnavedmapatty, Coimbatore – 641049, Tamil Nadu, India",
+      "as_printed_in_offcanvas": "66/2,SF No.70/1A, Athipalayam Road, Chinnavedmapatty, Coimbatore – 641 049.",
+      "source": "https://rudraautomations.com/contact/"
+    },
+    "brochure_address": {
+      "as_printed": "46/2, Sathy Road, Ramakrishnapuram, Ganapathy, Coimbatore - 641 006",
+      "source": "https://rudraautomations.com/Brochure.pdf (page 1)",
+      "note": "Different from the Contact page address. Both are recorded as printed."
+    },
+    "phones_on_contact_page": [
+      "98428 53665",
+      "98652 12374",
+      "98422 53665"
+    ],
+    "offcanvas_call_us": "919842853665",
+    "email": "rudraautomations@gmail.com",
+    "whatsapp": {
+      "number": "919994281248",
+      "widget": "Chaty",
+      "label": "Contact us",
+      "appears": "site-wide, bottom-left"
+    },
+    "map": {
+      "label": "Rudra Automation",
+      "latitude": 11.0523596,
+      "longitude": 76.9828009,
+      "embed_url": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15663.26711657273!2d76.9828009!3d11.0523596!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85873ec682143%3A0xc132cb472103d29!2sRudra%20Automation!5e0!3m2!1sen!2sin!4v1688092920690!5m2!1sen!2sin"
+    },
+    "social_profile_urls": [],
+    "contact_form": {
+      "plugin": "Contact Form 7 5.8.4",
+      "page": "https://rudraautomations.com/contact/",
+      "unit_tag": "wpcf7-f20197-p21095-o1",
+      "fields": [
+        {
+          "name": "your-name",
+          "placeholder": "Name"
+        },
+        {
+          "name": "your-email",
+          "placeholder": "E-Mail"
+        },
+        {
+          "name": "your-phone",
+          "placeholder": "Phone Number"
+        },
+        {
+          "name": "your-company",
+          "placeholder": "Company Name"
+        },
+        {
+          "name": "your-message",
+          "placeholder": "Your Message Here"
+        },
+        {
+          "name": "submit",
+          "label": "Submit Now"
+        }
+      ],
+      "note": "Placeholders taken from the rendered Contact page screenshot. The form was not submitted."
+    }
+  },
+  "navigation": [
+    {
+      "label": "HOME",
+      "url": "https://rudraautomations.com/"
+    },
+    {
+      "label": "ABOUT US",
+      "url": "https://rudraautomations.com/about/"
+    },
+    {
+      "label": "PRODUCTS",
+      "url": "https://rudraautomations.com/products/",
+      "children": [
+        {
+          "label": "TURRET CAPSTAN MACHINE",
+          "url": "https://rudraautomations.com/turret-capstan-machine/"
+        },
+        {
+          "label": "AUTO TURRET CAPSTAN MACHINE",
+          "url": "https://rudraautomations.com/auto-turret-capstan-machine/"
+        },
+        {
+          "label": "SGS SINGLE SPINDLE AUTOMAT MACHINES",
+          "url": "https://rudraautomations.com/single-spindle-automat-machine/"
+        },
+        {
+          "label": "SPARES / ACCESSORIES",
+          "url": "https://rudraautomations.com/sparesaccessories/"
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIATES",
+      "url": "https://rudraautomations.com/associates/"
+    },
+    {
+      "label": "CONTACT",
+      "url": "https://rudraautomations.com/contact/"
+    },
+    {
+      "label": "BROCHURE",
+      "url": "https://rudraautomations.com/Brochure.pdf",
+      "type": "header_button"
+    }
+  ],
+  "associates": [
+    {
+      "region": "CHENNAI - NORTH",
+      "name": "Mr.Nagumani",
+      "phone": "093811 14450"
+    },
+    {
+      "region": "CHENNAI - SOUTH",
+      "name": "Mr.Thomas Mathew",
+      "phone": "096003 05212"
+    },
+    {
+      "region": "HOSUR",
+      "name": "Mr.Venkatesan",
+      "phone": "098652 77750"
+    },
+    {
+      "region": "BANGALORE",
+      "name": "Mr.Satheesh",
+      "phone": "098861 37378"
+    },
+    {
+      "region": "BANGALORE",
+      "name": "Mr.Ramkumar",
+      "phone": "099646 43373"
+    },
+    {
+      "region": "MUMBAI",
+      "name": "Mr.Paul Edward",
+      "phone": "098212 50566"
+    },
+    {
+      "region": "NASIK",
+      "name": "Mr. Lalith",
+      "phone": "098224 10839"
+    },
+    {
+      "region": "PUNE",
+      "name": "Mr.Sridhar Chalka",
+      "phone": "093711 91395"
+    },
+    {
+      "region": "NAGPUR",
+      "name": "Mr.Sridhar Chalka",
+      "phone": "093711 91395"
+    },
+    {
+      "region": "INDORE",
+      "name": "Mr.Sridhar Chalka",
+      "phone": "093711 91395"
+    },
+    {
+      "region": "GUJARAT",
+      "name": "Mr.Paul Edward",
+      "phone": "098212 50566"
+    },
+    {
+      "region": "DELHI - NCR",
+      "name": "Mr.Upendra Kalia",
+      "phone": "098104 27007"
+    }
+  ],
+  "products": [
+    {
+      "name": "Turret Capstan Machine",
+      "models": [
+        "TC25",
+        "TC32"
+      ],
+      "url": "https://rudraautomations.com/turret-capstan-machine/",
+      "og_image": "https://rudraautomations.com/wp-content/uploads/2023/07/RUDRA-machine-02-820x1024.png",
+      "local_images": [
+        "images/2023__07__RUDRA-machine-02.png",
+        "images/2023__07__RUDRA-machine-02-png.png",
+        "images/2023__07__RUDRA-machine-02-png-1.png",
+        "images/2023__07__Artboard-2.jpg"
+      ],
+      "optional_accessories_list_on_page": [
+        "Die holders (Small, Medium & Big)",
+        "Turning tool holder (Single & Double)",
+        "Front stopper (Stationary & Revolving)",
+        "Single vertical slide attachment",
+        "Gravity bar feed attachment",
+        "Auto threading (Right & Left)",
+        "Long turning attachment",
+        "MT-1 & MT-2 Taper sleeves",
+        "Internal grooving tool holder",
+        "Cross slide attachment",
+        "SB-10 Collet holder (Big)",
+        "Coolant equipments",
+        "A3 Collet holder",
+        "Back stopper",
+        "4\"-3 Jaw chuck"
+      ],
+      "specifications_table_id": 27600,
+      "specifications_table_title_on_site": "Auto.csv",
+      "specifications": [
+        {
+          "MODEL": "Type of chucking",
+          "TC25": "Collet",
+          "TC32": "Collet"
+        },
+        {
+          "MODEL": "Maximum bar size in collet - Round",
+          "TC25": "Ø25 mm",
+          "TC32": "Ø32 mm"
+        },
+        {
+          "MODEL": "Maximum bar size in collet - Hexagonal",
+          "TC25": "A/F 22 mm",
+          "TC32": "A/F 27 mm"
+        },
+        {
+          "MODEL": "Maximum bar size in collet - Square",
+          "TC25": "A/F 18 mm",
+          "TC32": "A/F 22 mm"
+        },
+        {
+          "MODEL": "Net/Gross weight AC 32 - 400 - 500",
+          "TC25": "375/465 Kg",
+          "TC32": "375/465 Kg"
+        },
+        {
+          "MODEL": "Type of drive",
+          "TC25": "Counter Shaft",
+          "TC32": "Counter Shaft"
+        },
+        {
+          "MODEL": "Number of speeds",
+          "TC25": "16",
+          "TC32": "16"
+        },
+        {
+          "MODEL": "Speed range",
+          "TC25": "125-3100 rpm",
+          "TC32": "125-3100 rpm"
+        },
+        {
+          "MODEL": "Cross slide traverse",
+          "TC25": "60 mm",
+          "TC32": "60 mm"
+        },
+        {
+          "MODEL": "Vertical slide traverse",
+          "TC25": "25 mm",
+          "TC32": "25 mm"
+        },
+        {
+          "MODEL": "Long turning traverse",
+          "TC25": "70 mm",
+          "TC32": "70 mm"
+        },
+        {
+          "MODEL": "Turret traverse",
+          "TC25": "200 mm",
+          "TC32": "200 mm"
+        },
+        {
+          "MODEL": "Collet capacity",
+          "TC25": "13 mm",
+          "TC32": "13 mm"
+        },
+        {
+          "MODEL": "Main motor (3 Phase, 415 V, 50 Hz)",
+          "TC25": "0.75/1.1 kw",
+          "TC32": "0.75/1.1 kw"
+        },
+        {
+          "MODEL": "Motor speed (Reversible)",
+          "TC25": "715/2800 rpm",
+          "TC32": "715/2800 rpm"
+        },
+        {
+          "MODEL": "Coolant pump delivery",
+          "TC25": "40 lpm",
+          "TC32": "40 lpm"
+        }
+      ]
+    },
+    {
+      "name": "Auto Turret Capstan Machine",
+      "models": [
+        "AC25",
+        "AC32"
+      ],
+      "url": "https://rudraautomations.com/auto-turret-capstan-machine/",
+      "og_image": "https://rudraautomations.com/wp-content/uploads/2023/07/sgs-brou1-copy-888x1024.jpg",
+      "local_images": [
+        "images/2023__07__sgs-brou1-copy.jpg",
+        "images/2023__07__sgs-brou1-copy.png",
+        "images/2023__07__Artboard-2-copy-2.jpg"
+      ],
+      "standard_equipment_on_page": [
+        "PLC system, Servo Motor & Drives",
+        "Automatic Centralized Lubrication system",
+        "Sheet metal guards, Chip tray, Machine Lamp & Hand Tools."
+      ],
+      "specifications_table_id": 27496,
+      "specifications_table_title_on_site": "TCM.csv",
+      "specifications": [
+        {
+          "MODEL": "Axis Drive",
+          "AC 25": "",
+          "AC 32": ""
+        },
+        {
+          "MODEL": "Type of Motor",
+          "AC 25": "Servo",
+          "AC 32": "Servo"
+        },
+        {
+          "MODEL": "Axis motor capacity",
+          "AC 25": "2.4 Nm",
+          "AC 32": "2.4 Nm"
+        },
+        {
+          "MODEL": "Ball screw pitch",
+          "AC 25": "5",
+          "AC 32": "5"
+        },
+        {
+          "MODEL": "Ball screw dia",
+          "AC 25": "20",
+          "AC 32": "20"
+        },
+        {
+          "MODEL": "Travel distance",
+          "AC 25": "130mm",
+          "AC 32": "130mm"
+        },
+        {
+          "MODEL": "Rapid Feed",
+          "AC 25": "12m/min",
+          "AC 32": "12m/min"
+        },
+        {
+          "MODEL": "Control Unit",
+          "AC 25": "Delta PLC",
+          "AC 32": "Delta PLC"
+        },
+        {
+          "MODEL": "Spindle Drive",
+          "AC 25": "",
+          "AC 32": ""
+        },
+        {
+          "MODEL": "Type of drive",
+          "AC 25": "Counter shaft",
+          "AC 32": "Counter shaft"
+        },
+        {
+          "MODEL": "No. of Speeds",
+          "AC 25": "16",
+          "AC 32": "16"
+        },
+        {
+          "MODEL": "Speed Ranges",
+          "AC 25": "125 - 3100 rpm",
+          "AC 32": "125 - 3100 rpm"
+        },
+        {
+          "MODEL": "Chucking Capacity",
+          "AC 25": "",
+          "AC 32": ""
+        },
+        {
+          "MODEL": "Type of chucking",
+          "AC 25": "A25 Collect",
+          "AC 32": "A32 Collect"
+        },
+        {
+          "MODEL": "Max bar size in Collet - Round",
+          "AC 25": "Dia 25mm",
+          "AC 32": "Dia 32mm"
+        },
+        {
+          "MODEL": "Max bar size in Collet - Hexagonal",
+          "AC 25": "A/F 22mm",
+          "AC 32": "A/F 27mm"
+        },
+        {
+          "MODEL": "Max bar size in Collet - Square",
+          "AC 25": "A/F 18mm",
+          "AC 32": "A/F 22mm"
+        },
+        {
+          "MODEL": "Power",
+          "AC 25": "",
+          "AC 32": ""
+        },
+        {
+          "MODEL": "Spindle Motor",
+          "AC 25": "1.1 Kw",
+          "AC 32": "1.1 Kw"
+        },
+        {
+          "MODEL": "Total Power",
+          "AC 25": "2 Kw",
+          "AC 32": "2 Kw"
+        }
+      ],
+      "optional_accessories_table_id": 27944,
+      "optional_accessories": [
+        {
+          "No.": "1",
+          "Part Number": "SA10800",
+          "Part Name": "Auto Threading Attachment (Using Taps & Dies)"
+        },
+        {
+          "No.": "2",
+          "Part Number": "SA10700",
+          "Part Name": "Cross Slide Attachment Pneumatic"
+        },
+        {
+          "No.": "3",
+          "Part Number": "SA10600",
+          "Part Name": "Single Vertical Slide Attachment Pneumatic"
+        },
+        {
+          "No.": "4",
+          "Part Number": "SA60600",
+          "Part Name": "Silent Bar Feed Attachment AC32"
+        },
+        {
+          "No.": "5",
+          "Part Number": "S315000",
+          "Part Name": "Gravity Bar Feed Attachment TC32"
+        },
+        {
+          "No.": "6",
+          "Part Number": "SA10700",
+          "Part Name": "Cross Slide Attachment Hydraulic"
+        },
+        {
+          "No.": "7",
+          "Part Number": "SA10600",
+          "Part Name": "Single Vertical Slide Attachment Hydraulic"
+        },
+        {
+          "No.": "8",
+          "Part Number": "S10010",
+          "Part Name": "Coolant Equipment With Fittings"
+        },
+        {
+          "No.": "9",
+          "Part Number": "S10012",
+          "Part Name": "Left Hand Threading Attachment"
+        },
+        {
+          "No.": "10",
+          "Part Number": "S11413",
+          "Part Name": "Turning Tool Holder (Single)"
+        },
+        {
+          "No.": "11",
+          "Part Number": "S11414",
+          "Part Name": "Turning Tool Holder (Double)"
+        },
+        {
+          "No.": "12",
+          "Part Number": "S11413",
+          "Part Name": "Die Holder (Big)"
+        },
+        {
+          "No.": "13",
+          "Part Number": "S11420",
+          "Part Name": "Die Holder (Medium)"
+        },
+        {
+          "No.": "14",
+          "Part Number": "S11418",
+          "Part Name": "Die Holder (Small)"
+        },
+        {
+          "No.": "15",
+          "Part Number": "S11411",
+          "Part Name": "A-3 Collet Holder"
+        },
+        {
+          "No.": "16",
+          "Part Number": "S31402",
+          "Part Name": "Back Stopper SGS32"
+        },
+        {
+          "No.": "17",
+          "Part Number": "114060",
+          "Part Name": "MT-1 Taper Sleeve"
+        },
+        {
+          "No.": "18",
+          "Part Number": "114070",
+          "Part Name": "MT -2 Taper Sleeve"
+        },
+        {
+          "No.": "19",
+          "Part Number": "S11405",
+          "Part Name": "Front Stopper (Revolving)"
+        }
+      ]
+    },
+    {
+      "name": "SGS Single Spindle Automat Machines",
+      "models": [
+        "SGS25",
+        "SGS32",
+        "SGS60"
+      ],
+      "url": "https://rudraautomations.com/single-spindle-automat-machine/",
+      "local_images": [
+        "images/Custom-Size-en-dash-1-1170x1536.png",
+        "images/2023__12__1.png",
+        "images/2023__07__111.png"
+      ],
+      "note": "The brochure names these A25, A32 and A60. The original full-size photo Custom-Size-–-1.png returns HTTP 404; a 1170x1536 derivative was saved.",
+      "standard_equipment_on_page": [
+        "Double Vertical Slide with Tool Holders",
+        "Cross Slide assembly & Tail stock assembly",
+        "Gear coolant Pump, Main Motor, Feed Motor & electricals",
+        "Set of Feed change gears (25,35,40,45,50,60,80,90 & 100 Teeth )",
+        "Sheet metal guards, Chip tray, Machine Lamp & Hand tools."
+      ],
+      "specifications_table_id": 27587,
+      "specifications_table_title_on_site": "Single Spindle.csv",
+      "specifications": [
+        {
+          "Model": "Type of chucking",
+          "SGS25": "Collet",
+          "SGS32": "Collet",
+          "SGS60": "Collet"
+        },
+        {
+          "Model": "Maximum bar size in collet - Round",
+          "SGS25": "Ø25 mm",
+          "SGS32": "Ø32 mm",
+          "SGS60": "060 mm"
+        },
+        {
+          "Model": "Maximum bar size in collet - Hexagonal",
+          "SGS25": "A/F 22 mm",
+          "SGS32": "A/F 27 mm",
+          "SGS60": "A/F 52 mm"
+        },
+        {
+          "Model": "Maximum bar size in collet - Square",
+          "SGS25": "A/F 18 mm",
+          "SGS32": "A/F 22 mm",
+          "SGS60": "A/F 42 mm"
+        },
+        {
+          "Model": "Net/Gross weight",
+          "SGS25": "450/550 Kg",
+          "SGS32": "600/735 Kg",
+          "SGS60": "1000/1300 Kg"
+        },
+        {
+          "Model": "Type of drive",
+          "SGS25": "Counter Shaft",
+          "SGS32": "Counter Shaft",
+          "SGS60": "Counter Shaft"
+        },
+        {
+          "Model": "Number of speeds",
+          "SGS25": "12",
+          "SGS32": "12",
+          "SGS60": "12"
+        },
+        {
+          "Model": "Speed range",
+          "SGS25": "550-4000 rpm",
+          "SGS32": "360-3380 rpm",
+          "SGS60": "160-2000 rpm"
+        },
+        {
+          "Model": "Number of feeds",
+          "SGS25": "42",
+          "SGS32": "42",
+          "SGS60": "42"
+        },
+        {
+          "Model": "Cycle time sec/piece",
+          "SGS25": "1.7-180",
+          "SGS32": "1.7-180",
+          "SGS60": "1.7-180"
+        },
+        {
+          "Model": "Production rate pieces/Hr",
+          "SGS25": "28-2100",
+          "SGS32": "28-2100",
+          "SGS60": "12-1245"
+        },
+        {
+          "Model": "Cross slide traverse",
+          "SGS25": "22 mm",
+          "SGS32": "22 mm",
+          "SGS60": "31 mm"
+        },
+        {
+          "Model": "Vertical slide traverse",
+          "SGS25": "15 mm",
+          "SGS32": "18 mm",
+          "SGS60": "31 mm"
+        },
+        {
+          "Model": "Long turning traverse",
+          "SGS25": "70 mm",
+          "SGS32": "70 mm",
+          "SGS60": "100 mm"
+        },
+        {
+          "Model": "Tail Stock/Turret traverse",
+          "SGS25": "100 mm",
+          "SGS32": "100 mm",
+          "SGS60": "165 mm"
+        },
+        {
+          "Model": "Tail Stock/Collet capacity",
+          "SGS25": "13 mm",
+          "SGS32": "13 mm",
+          "SGS60": "22 mm"
+        },
+        {
+          "Model": "Main motor (3 Phase, 415 V, 50 Hz)",
+          "SGS25": "1.3/1.6 kw",
+          "SGS32": "2.2 kw",
+          "SGS60": "2.2/3.7 kw"
+        },
+        {
+          "Model": "Motor speed (Reversible)",
+          "SGS25": "1440/2800 rpm",
+          "SGS32": "1440/2800 rpm",
+          "SGS60": "720/1440 rpm"
+        },
+        {
+          "Model": "Feed drive motor (3 Phase, 415 V, 50 Hz)",
+          "SGS25": "0.37 kw",
+          "SGS32": "0.55 kw",
+          "SGS60": "0.75 kw"
+        },
+        {
+          "Model": "Coolant pump delivery",
+          "SGS25": "15 lpm",
+          "SGS32": "20 lpm",
+          "SGS60": "20 lpm"
+        }
+      ],
+      "optional_accessories_table_id": 27957,
+      "optional_accessories": [
+        {
+          "No.": "1",
+          "Part Number": "S51500",
+          "Part Name": "Long Turning Attachment"
+        },
+        {
+          "No.": "2",
+          "Part Number": "S52000",
+          "Part Name": "Swing Stopper Attachment"
+        },
+        {
+          "No.": "3",
+          "Part Number": "S52100",
+          "Part Name": "Stopping & Centering attachment"
+        },
+        {
+          "No.": "4",
+          "Part Number": "S52700",
+          "Part Name": "Piece counter assembly A25/32 (Digital type)"
+        },
+        {
+          "No.": "5",
+          "Part Number": "S51801",
+          "Part Name": "W-35 Turning Tool Holder"
+        },
+        {
+          "No.": "6",
+          "Part Number": "S51807/8",
+          "Part Name": "Rocker Type Tool Holder (Front & Rear/Each)"
+        },
+        {
+          "No.": "7",
+          "Part Number": "S51805/6",
+          "Part Name": "Triple Tool Holder (Front & Rear) / Each"
+        },
+        {
+          "No.": "8",
+          "Part Number": "S51803/4",
+          "Part Name": "Double Tool Holder (Front & Rear) / Each"
+        },
+        {
+          "No.": "9",
+          "Part Number": "518080",
+          "Part Name": "MT-1 Taper Spindle"
+        },
+        {
+          "No.": "10",
+          "Part Number": "518090",
+          "Part Name": "MT-2 Taper Spindle"
+        },
+        {
+          "No.": "11",
+          "Part Number": "S11402",
+          "Part Name": "Back Stopper A25"
+        }
+      ]
+    },
+    {
+      "name": "Spares / Accessories",
+      "models": [],
+      "url": "https://rudraautomations.com/sparesaccessories/",
+      "local_images": [
+        "images/2023__09__Spares-Accessories.png"
+      ],
+      "note": "The page has a heading and one image only; no parts list or prices are published there."
+    }
+  ],
+  "brochure": {
+    "url": "https://rudraautomations.com/Brochure.pdf",
+    "local_file": "docs/Brochure.pdf",
+    "transcript": "docs/brochure-transcript.md",
+    "pages": 2,
+    "bytes": 3292921,
+    "pdf_created": "2019-06-14T17:04:27+05:30",
+    "pdf_modified": "2023-09-23T12:52:23+05:30",
+    "image_only": true
+  },
+  "tech": {
+    "cms": "WordPress 6.4.14",
+    "php": "7.4.33",
+    "hosting": "Hostinger",
+    "theme": "Bizup 2.0.4 by RSTheme",
+    "page_builder": "Elementor 3.18.1",
+    "plugins_detected": [
+      "Elementor 3.18.1",
+      "Slider Revolution 6.5.31",
+      "Yoast SEO Premium 20.12 / Yoast SEO 21.6",
+      "Contact Form 7 5.8.4",
+      "Chaty 3.1.8",
+      "Ninja Tables 5.0.4",
+      "Redux Framework 4.4.10",
+      "Site Kit by Google 1.121.0",
+      "LiteSpeed Cache",
+      "RS Elements (rselements)",
+      "Mailchimp for WP (REST namespace present)"
+    ]
+  },
+  "pages_company": [
+    "https://rudraautomations.com/",
+    "https://rudraautomations.com/about/",
+    "https://rudraautomations.com/products/",
+    "https://rudraautomations.com/turret-capstan-machine/",
+    "https://rudraautomations.com/auto-turret-capstan-machine/",
+    "https://rudraautomations.com/single-spindle-automat-machine/",
+    "https://rudraautomations.com/sparesaccessories/",
+    "https://rudraautomations.com/associates/",
+    "https://rudraautomations.com/contact/"
+  ]
+}
