@@ -9,7 +9,7 @@ import { appPathname, appUrl, prefixInternalLinks } from './routing'
 const fade = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: .55 } } }
 const inr = (amount: number) => `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 })}`
 
-function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><img className="brand-mark" src={appUrl('/aaron-enterprises-logo.png')} alt=""/><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
+function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><img className="brand-mark" src={appUrl('/aaron-enterprises-logo.png?v=2')} alt=""/><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
 function Header({ cart }: { cart: number }) {
   const [open, setOpen] = useState(false)
   const links = [['Home','/#home'],['Products','/products'],['Categories','/#categories'],['About Us','/#about'],['Contact','/#contact']]
