@@ -1,6 +1,20 @@
 const configuredBase = (import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/'
 export const BASE_PATH = configuredBase.replace(/\/$/, '')
 
+/* GitHub Pages 404.html fallback hands the intended path over via
+   sessionStorage; restore it into the address bar before first render. */
+const SPA_REDIRECT_KEY = 'ae-spa-redirect'
+try {
+  const saved = window.sessionStorage.getItem(SPA_REDIRECT_KEY)
+  if (saved) {
+    window.sessionStorage.removeItem(SPA_REDIRECT_KEY)
+    const suffix = saved.startsWith('/') ? saved : `/${saved}`
+    window.history.replaceState(null, '', `${BASE_PATH}${suffix}` || '/')
+  }
+} catch {
+  /* sessionStorage unavailable — ignore */
+}
+
 export function appUrl(path: string) {
   const suffix = path.startsWith('/') ? path : `/${path}`
   return `${BASE_PATH}${suffix}` || '/'
@@ -9,7 +23,10 @@ export function appUrl(path: string) {
 export function appPathname() {
   const pathname = window.location.pathname
   if (BASE_PATH && (pathname === BASE_PATH || pathname.startsWith(`${BASE_PATH}/`))) {
-    return pathname.slice(BASE_PATH.length) || '/'
+    const sub = pathname.slice(BASE_PATH.length) || '/'
+    /* GitHub Pages appends a trailing slash when serving the 404 fallback
+       (e.g. /products/); normalize so route matchers keep working. */
+    return sub === '/' ? '/' : sub.replace(/\/+$/, '') || '/'
   }
   return pathname
 }

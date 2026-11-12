@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /aaron-enterprises/admin
+Disallow: /aaron-enterprises/dashboard
+Disallow: /aaron-enterprises/account
+Disallow: /aaron-enterprises/checkout
+Disallow: /aaron-enterprises/invoice/
+
+Sitemap: https://aaron-samuvel.github.io/aaron-enterprises/sitemap.xml
