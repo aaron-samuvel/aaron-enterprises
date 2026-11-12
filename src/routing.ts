@@ -23,7 +23,10 @@ export function appUrl(path: string) {
 export function appPathname() {
   const pathname = window.location.pathname
   if (BASE_PATH && (pathname === BASE_PATH || pathname.startsWith(`${BASE_PATH}/`))) {
-    return pathname.slice(BASE_PATH.length) || '/'
+    const sub = pathname.slice(BASE_PATH.length) || '/'
+    /* GitHub Pages appends a trailing slash when serving the 404 fallback
+       (e.g. /products/); normalize so route matchers keep working. */
+    return sub === '/' ? '/' : sub.replace(/\/+$/, '') || '/'
   }
   return pathname
 }
