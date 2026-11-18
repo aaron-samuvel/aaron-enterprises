@@ -55,4 +55,4 @@ Tracked in [Issues](https://github.com/aaron-samuvel/aaron-enterprises/issues):
 
 1. Add real business contact details
 2. Add real product & category photos
-3. Improve SEO meta tags & social sharing
+3. ~~Improve SEO meta tags & social sharing~~ — canonical URL, Open Graph, Twitter cards, and Organization schema added
