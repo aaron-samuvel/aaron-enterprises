@@ -12,6 +12,14 @@ const inr = (amount: number) => `₹${amount.toLocaleString('en-IN', { minimumFr
 function Brand() { return <a className="brand" href="/#home" aria-label="Aaron Enterprises home"><img className="brand-mark" src={appUrl('/aaron-enterprises-logo.png')} alt=""/><span className="brand-copy"><b>AARON <em>ENTERPRISES</em></b><small>INDUSTRIAL SPARE PARTS &amp; SOLUTIONS</small></span></a> }
 function Header({ cart }: { cart: number }) {
   const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (!open) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [open])
   const links = [['Home','/#home'],['Products','/products'],['Categories','/#categories'],['About Us','/#about'],['Contact','/#contact']]
   return <header className="header"><div className="nav-wrap"><Brand/><nav className="desktop-nav" aria-label="Main navigation">{links.map(([label,href])=><a href={href} key={label}>{label}</a>)}</nav><div className="nav-tools"><button className="icon-button nav-search" onClick={()=>{if(appPathname()==='/products')document.querySelector<HTMLInputElement>('.catalog-search input')?.focus();else location.href=appUrl('/products')}} aria-label="Search products"><Search size={18}/></button><a className="icon-button wishlist-nav" href="/wishlist" aria-label="Wishlist"><Heart size={18}/></a><a className="icon-button account" href="/account" aria-label="Demo account"><UserRound size={18}/></a><a className="cart-button" href="/cart" aria-label={`Cart, ${cart} items`}><ShoppingCart size={18}/><span>Cart</span><b>{cart}</b></a><button className="mobile-toggle" onClick={()=>setOpen(!open)} aria-label={open?'Close menu':'Open menu'} aria-expanded={open}>{open?<X size={21}/>:<Menu size={21}/>}</button></div></div><AnimatePresence>{open&&<motion.nav className="mobile-nav" aria-label="Mobile navigation" initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}}>{links.map(([label,href])=><a key={label} href={href} onClick={()=>setOpen(false)}>{label}<ArrowRight size={16}/></a>)}<a href="/wishlist" onClick={()=>setOpen(false)}>Wishlist <Heart size={16}/></a><a href="/cart" onClick={()=>setOpen(false)}>Cart <ShoppingCart size={16}/></a><a href="/account" onClick={()=>setOpen(false)}>Demo account <UserRound size={16}/></a></motion.nav>}</AnimatePresence></header>
 }
