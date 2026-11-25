@@ -6,6 +6,13 @@ export function appUrl(path: string) {
   return `${BASE_PATH}${suffix}` || '/'
 }
 
+export function setImageFallback(image: HTMLImageElement, description: string) {
+  if (image.dataset.fallbackApplied) return
+  image.dataset.fallbackApplied = 'true'
+  image.src = appUrl('/image-unavailable.svg')
+  image.alt = `${description} image unavailable`
+}
+
 export function appPathname() {
   const pathname = window.location.pathname
   if (BASE_PATH && (pathname === BASE_PATH || pathname.startsWith(`${BASE_PATH}/`))) {
