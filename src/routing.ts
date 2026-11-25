@@ -7,9 +7,9 @@ export function appUrl(path: string) {
 }
 
 export function setImageFallback(image: HTMLImageElement, description: string) {
-  if (image.dataset.fallbackApplied) return
-  image.dataset.fallbackApplied = 'true'
-  image.src = appUrl('/image-unavailable.svg')
+  const fallbackUrl = new URL(appUrl('/image-unavailable.svg'), window.location.href).href
+  if (image.src === fallbackUrl) return
+  image.src = fallbackUrl
   image.alt = `${description} image unavailable`
 }
 
