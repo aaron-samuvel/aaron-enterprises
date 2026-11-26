@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: aaron-enterprises-api
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX:20}
+      minimum-idle: ${DB_POOL_MIN_IDLE:2}
+      connection-timeout: 3000
+      validation-timeout: 2000
+      max-lifetime: 1800000
+      keepalive-time: 300000
+      connection-init-sql: SET statement_timeout = '5s'
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+          time_zone: UTC
+        order_inserts: true
+        order_updates: true
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+  max-http-request-header-size: 16KB
+  compression:
+    enabled: true
+    mime-types: application/json,text/plain
+    min-response-size: 1KB
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:64}
+      min-spare: ${TOMCAT_MIN_SPARE_THREADS:8}
+    max-connections: ${TOMCAT_MAX_CONNECTIONS:2048}
+    accept-count: ${TOMCAT_ACCEPT_COUNT:128}
+    connection-timeout: 5s
+    keep-alive-timeout: 20s
+    max-keep-alive-requests: 100
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8081}
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+        add-additional-paths: true
+      group:
+        readiness:
+          include: readinessState,db
+  info:
+    env:
+      enabled: false
+
+logging:
+  structured:
+    format:
+      console: logstash

@@ -17,6 +17,7 @@ A fast, business-focused catalog website for an industrial machine spare parts c
 | Styling | Tailwind CSS 4 |
 | Animation | Framer Motion |
 | Icons | lucide-react |
+| Backend API foundation | Java 21 + Spring Boot 4.2 + PostgreSQL |
 
 ## Getting started
 
@@ -40,13 +41,17 @@ npm run preview   # preview the production build locally
 │   ├── data.ts             # Product & category data
 │   ├── routing.ts          # Base-path aware routing helpers (GitHub Pages)
 │   └── styles.css          # Global styles
+├── backend/                 # Spring Boot API and PostgreSQL migrations
 └── .github/workflows/      # CI + GitHub Pages deployment
 ```
+
+The Spring Boot product catalog API is documented in [backend/README.md](backend/README.md). It is a separate service from the GitHub Pages frontend and is not connected to the live site yet.
 
 ## Deployment
 
 - **Deploy:** pushes to `main` automatically build and publish to **GitHub Pages** (`.github/workflows/pages.yml`).
 - **CI:** every pull request is typechecked and built before merge (`.github/workflows/ci.yml`).
+- **Backend CI:** Spring Boot tests and PostgreSQL-backed integration tests run for backend changes (`.github/workflows/backend-ci.yml`).
 - **Dependencies:** Dependabot opens weekly update PRs (`.github/dependabot.yml`).
 
 ## Roadmap
