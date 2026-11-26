@@ -3,6 +3,7 @@ package com.aaronenterprises.api.catalog;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,7 +79,7 @@ class CatalogRepositoryIT {
             new BigDecimal("18.00"),
             10,
             published,
-            Instant.parse(createdAt)
+            Timestamp.from(Instant.parse(createdAt))
         );
     }
 }
