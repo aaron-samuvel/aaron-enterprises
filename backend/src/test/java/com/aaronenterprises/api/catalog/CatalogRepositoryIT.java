@@ -48,6 +48,11 @@ class CatalogRepositoryIT {
         insert("bearing-b", "BEAR-002", "Bearing Beta", "SKF", "Bearings", true, "2026-11-21T10:00:00Z");
         insert("hidden-bearing", "BEAR-003", "Bearing Hidden", "SKF", "Bearings", false, "2026-11-22T10:00:00Z");
 
+        CatalogPageResponse unfiltered = catalog.browse(null, null, 1, null);
+
+        assertThat(unfiltered.items()).hasSize(1);
+        assertThat(unfiltered.nextCursor()).isNotBlank();
+
         CatalogPageResponse first = catalog.browse("bear", "Bearings", 1, null);
 
         assertThat(first.items()).hasSize(1);
